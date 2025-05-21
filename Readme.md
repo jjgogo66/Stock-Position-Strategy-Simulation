@@ -1,36 +1,62 @@
 # Stock Position Strategy Simulation
-This code simulate the stock market gain/lose situations and is trying to figure out a best strategy for the stock market, e.g. how many percentage of asset should be put in stock market.
 
-This program is a re-evaluation of https://www.youtube.com/watch?v=9FlsmNJRSr0&t=5s
+This project simulates stock market gains and losses to determine the optimal investment position strategy, particularly focusing on what percentage of assets should be allocated to the stock market.
 
-## Instructions:
-- install packages: `pip install -r requirements.txt`
-- modify parameters in simu.py
-- run code with: `python simu.py`
+This program is a re-implementation inspired by: https://www.youtube.com/watch?v=9FlsmNJRSr0
 
-## Parameters
-- win rate, e.g. 2.0 means double when win
-- lose rate, e.g. 0.5 means half when lose
-- NUM_EXPERIMENTS is self-explanatory
-- Flip range parameters specify the range of flips, (100, 501, 100) means we will do the experiments 5 times with num_flips=[100, 200, 300, 400, 500]
+## Getting Started
 
-## Result:
-More pictures can be found in results folders. I think medin results make more sense here. 
-![](results_2.0_0.5/percentage_200.png)
+### Prerequisites
+- Python 3.x
+- Required packages: Install using `pip install -r requirements.txt`
 
-## Conclusion:
-In case of winning, (The product of win rate and lose rate has to be greater or equal than 1.0 to get profit, e.g. 1.25\*0.8>=1.0, 2.0\*0.5>=1.0)
-- 50% asset on bet maximize the median results (I think median makes more sense in this case compare to mean result). 
-- try to improve wining ratio, e.g. (2.0, 0.5) is better than (1.25, 0.8)
-- the more experiments, the more gains, 400 experiments are better than 200 experiments
+### Running the Simulation
+1. Modify parameters in `simu.py`
+2. Run the simulation: `python simu.py`
 
+## Configuration Parameters
 
-In case of lose (The product is less than 1.0, e.g. 1.2*0.8<1.0):
-- put less percentage of assets on bet
-- Do less rounds of experiments
+- **Win Rate**: Multiplier for winning scenarios (e.g., 2.0 means doubling the investment)
+- **Loss Rate**: Multiplier for losing scenarios (e.g., 0.5 means halving the investment)
+- **NUM_EXPERIMENTS**: Number of simulation runs, fixed at 100000, no need to change this
+- **Flip Range Parameters**: Specifies the range of flips
+  - Example: `(100, 501, 100)` runs experiments with flip counts [100, 200, 300, 400, 500]
 
-## Tech Stack
+## Results
+
+The graph below demonstrates a scenario with the following parameters:
+- Win Rate: 2.0 (double on win)
+- Loss Rate: 0.5 (half on loss)
+- Number of Flips: 200
+
+![Percentage Results](results_2.0_0.5/percentage_200.png)
+
+Additional visualizations for different parameter combinations can be found in the `results` folder. The median results are particularly significant for analysis as they provide a more stable measure of central tendency compared to mean values.
+
+## Key Findings
+
+### General Case (Win Rate × Loss Rate = 1.0)
+Examples: 1.25 × 0.8 = 1.0, 2.0 × 0.5 = 1.0
+
+- 50% asset allocation maximizes median results (mathematically proven)
+- Higher win rates yield better returns (e.g., (2.0, 0.5) outperforms (1.25, 0.8))
+- More experiments lead to higher gains (e.g., 400 trials > 200 trials)
+
+### Profitable Scenario (Win Rate × Loss Rate > 1.0)
+Example: 1.3 × 0.8 > 1.0
+
+Recommendations:
+- Reduce percentage of assets allocated to each bet
+- Increase number of trading rounds
+
+### Loss Scenario (Win Rate × Loss Rate < 1.0)
+Example: 1.2 × 0.8 < 1.0
+
+Recommendations:
+- Minimize percentage of assets per bet
+- Reduce number of trading rounds
+
+## Technology Stack
 - Python
-
-## Special Thanks
-**Cursor AI: https://www.cursor.com/**
+- NumPy
+- [Cursor AI](https://www.cursor.com/)

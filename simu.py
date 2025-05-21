@@ -11,7 +11,7 @@ MAX_AMOUNT = 1e10     # Maximum allowed amount
 MIN_AMOUNT = 1e-10    # Minimum allowed amount
 BET_PERCENTAGES = np.arange(0, 1.1, 0.1)  # From 0% to 100% in steps of 10%
 NUM_PROCESSES = cpu_count()  # Use all available CPU cores
-WIN_RATE = 1.25
+WIN_RATE = 1.3
 LOSE_RATE = 0.8
 
 # Flip range parameters
